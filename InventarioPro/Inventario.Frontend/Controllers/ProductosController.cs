@@ -112,6 +112,17 @@ namespace Inventario.Frontend.Controllers
 
                 if (response.IsSuccessStatusCode)
                 {
+                    Operacion operacion = new()
+                    {
+                        Tipo = "Entrada",
+                        Fecha = DateTime.Now,
+                        Producto = producto.Nombre,
+                        Cantidad = producto.Cantidad,
+                        Stock = producto.Stock,
+                    };
+                    var jsonOperacion = JsonConvert.SerializeObject(operacion);
+                    var contentOperacion = new StringContent(jsonOperacion, Encoding.UTF8, "application/json");
+                    await _httpClient.PostAsync("/api/Operaciones/", contentOperacion);
                     TempData["AlertMessage"] = "Entrada agregada exitosamente!!!";
                     return RedirectToAction("Index");
                 }
@@ -145,6 +156,17 @@ namespace Inventario.Frontend.Controllers
 
                 if (response.IsSuccessStatusCode)
                 {
+                    Operacion operacion = new()
+                    {
+                        Tipo = "Salida",
+                        Fecha = DateTime.Now,
+                        Producto = producto.Nombre,
+                        Cantidad = producto.Cantidad,
+                        Stock = producto.Stock,
+                    };
+                    var jsonOperacion = JsonConvert.SerializeObject(operacion);
+                    var contentOperacion = new StringContent(jsonOperacion, Encoding.UTF8, "application/json");
+                    await _httpClient.PostAsync("/api/Operaciones/", contentOperacion);
                     TempData["AlertMessage"] = "Salida agregada exitosamente!!!";
                     return RedirectToAction("Index");
                 }

@@ -1,8 +1,70 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IEnumerable<Inventario.Frontend.Models.Operacion>
+@{
+    ViewData["Title"] = "Index";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+@section Estilos {
+    <link href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" rel="stylesheet" />
+}
+
+
+
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header text-center">
+            <h5>Inventario</h5>
+        </div>
+        <div class="card-body">
+            <table id="producto" class="table table-hover table-responsive table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Tipo</th>
+                        <th scope="col">Producto</th>
+                        <th scope="col">Fecha</th>                        
+                        <th scope="col">Cantidad</th>
+                        <th scope="col">Stock</th>
+                       
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <th scope="row">@item.Id</th>
+                            <td>@Html.DisplayFor(modelItem => item.Tipo)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Producto)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Fecha)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Cantidad)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Stock)</td>                          
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
+
+
+
+@section Scripts {
+
+    <partial name="_ValidationScriptsPartial" />
+
+   
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#producto').DataTable({
+                "language": {
+                    url: "https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
+                },
+            });
+        });
+    </script>
+
+    <script>
+        sc_deleteDialog.openModal('deleteItem', true, 'btnYesDelete', '/Productos/Delete/', false);
+    </script>
+}

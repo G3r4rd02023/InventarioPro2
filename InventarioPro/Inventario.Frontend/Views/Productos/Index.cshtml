@@ -56,6 +56,7 @@
                         <th scope="col">Nombre</th>
                         <th scope="col">Precio</th>
                         <th scope="col">Stock</th>
+                        <th scope="col">Valor</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -67,6 +68,7 @@
                             <td>@Html.DisplayFor(modelItem => item.Nombre)</td>
                             <td>@Html.DisplayFor(modelItem => item.Precio)</td>
                             <td>@Html.DisplayFor(modelItem => item.Stock)</td>
+                            <td>@Html.DisplayFor(modelItem => item.ValorTotal)</td>
                             <td>
                                 <a onclick="showInPopup('@Url.Action("Entrada", "Productos", new { id = item.Id })', '')"
                                    class="btn btn-outline-success btn-sm">

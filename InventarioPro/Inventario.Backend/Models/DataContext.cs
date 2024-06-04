@@ -10,5 +10,7 @@ namespace Inventario.Backend.Models
 
         public DbSet<Producto> Productos { get; set; }
 
+        public DbSet<Operacion> Operaciones { get; set; }
+
     }
 }
