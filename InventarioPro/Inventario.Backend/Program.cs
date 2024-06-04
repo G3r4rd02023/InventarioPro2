@@ -1,4 +1,7 @@
 
+using Inventario.Backend.Models;
+using Microsoft.EntityFrameworkCore;
+
 namespace Inventario.Backend
 {
     public class Program
@@ -10,6 +13,7 @@ namespace Inventario.Backend
             // Add services to the container.
 
             builder.Services.AddControllers();
+            builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer("name=ConexionSQL"));
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
